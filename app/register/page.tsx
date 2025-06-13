@@ -5,6 +5,7 @@ import { Input } from '@/components/ui/input'
 import { useState } from 'react'
 import Image from 'next/image'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
+import Link from 'next/link'
 
 export default function RegisterPage() {
     const [username, setUsername] = useState('')
@@ -27,6 +28,15 @@ export default function RegisterPage() {
         })
         const data = await res.json()
         setMessage(data.message || data.error)
+        // if (res.ok) {
+        //     setUsername('')
+        //     setCoords([])
+        //     setTimeout(() => {
+        //         window.location.href = '/login'
+        //     }, 2000) // Redirect to login after 2 seconds
+        // } else {
+        //     console.error(data.error || 'Registration failed')
+        // }
     }
 
     return (
@@ -56,6 +66,10 @@ export default function RegisterPage() {
                         disabled={coords.length !== 5}
                         className='w-full'
                         >Submit</Button>
+                        {/* Already have an account? */}
+                        <Button variant="link" className='w-full'>
+                            <Link href="/login">Already have an account? Login</Link>
+                        </Button>
                         {message && <p>{message}</p>}
                     </div>
                 </CardContent>
