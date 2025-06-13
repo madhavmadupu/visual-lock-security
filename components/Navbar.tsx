@@ -6,7 +6,7 @@ import Image from 'next/image'
 
 const Navbar = () => {
     return (
-        <div className='fixed flex w-full border-b border-b-white/20 px-4 py-2 justify-between items-center bg-white/5'>
+        <div className='fixed flex w-full border-b border-b-white/20 px-4 py-2 justify-between items-center'>
             <Link href="/" className='flex items-center gap-2'>
                 <Image src="/logo.png" alt="logo" width={40} height={40} />
                 <h1 className='text-xl font-semibold'>Visual Lock Security</h1>
