@@ -4,6 +4,7 @@ import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { useState } from 'react'
 import Image from 'next/image'
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 
 export default function RegisterPage() {
     const [username, setUsername] = useState('')
@@ -30,19 +31,35 @@ export default function RegisterPage() {
 
     return (
         <div className="flex flex-col items-center justify-center min-h-screen gap-4">
-            <h1 className="text-2xl font-bold">Register</h1>
-            <Input placeholder="Username" value={username} onChange={(e: React.ChangeEvent<HTMLInputElement>) => setUsername(e.target.value)} />
-            <Image
-                src="/security.jpg"
-                alt="Security"
-                width={400}
-                height={300}
-                className="border cursor-crosshair"
-                onClick={handleClick}
-            />
-            <p>Clicks: {coords.length}/5</p>
-            <Button onClick={handleRegister} disabled={coords.length !== 5}>Submit</Button>
-            {message && <p>{message}</p>}
+            <Card>
+                <CardHeader className="text-2xl font-bold">
+                    <CardTitle>Register</CardTitle>
+                    <p className="text-sm text-gray-500">Click on the image to register your 5 point password</p>
+                </CardHeader>
+                <CardContent className='flex flex-col items-center gap-4'>
+                    <Input
+                        placeholder="Username"
+                        value={username}
+                        onChange={(e: React.ChangeEvent<HTMLInputElement>) => setUsername(e.target.value)} />
+                    <Image
+                        src="/security.jpg"
+                        alt="Security"
+                        width={400}
+                        height={300}
+                        className="border cursor-crosshair rounded-lg"
+                        onClick={handleClick}
+                    />
+                    <div className='mt-4 flex flex-col items-center gap-2 w-full'>
+                        <p>Clicks: {coords.length}/5</p>
+                        <Button 
+                        onClick={handleRegister}
+                        disabled={coords.length !== 5}
+                        className='w-full'
+                        >Submit</Button>
+                        {message && <p>{message}</p>}
+                    </div>
+                </CardContent>
+            </Card>
         </div>
     )
 }
